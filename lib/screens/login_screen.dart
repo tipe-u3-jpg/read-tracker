@@ -195,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     // 🔥 ТЕСТОВА КНОПКА ДЛЯ КРАШУ
-
+                    /*
                     TextButton(
                       onPressed: () async {
                         await widget.analytics.logEvent(
@@ -213,6 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.red),
                       ),
                     ),
+                    */
 
                   ],
                 ),
