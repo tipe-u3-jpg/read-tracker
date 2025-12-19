@@ -178,7 +178,35 @@ class _BooksTabState extends State<BooksTab> {
                 child: Column(
                   children: [
                     // ... (тут твій код з вибором фото) ...
+                    // --- ПОЧАТОК БЛОКУ ФОТО ---
+                    GestureDetector(
+                      onTap: () async {
+                        final picker = ImagePicker();
+                        final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
+                        if (pickedFile != null) {
+                          setState(() {
+                            selectedImage = File(pickedFile.path);
+                          });
+                        }
+                      },
+                      child: Container(
+                        height: 150,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: selectedImage != null
+                            ? Image.file(selectedImage!, fit: BoxFit.cover) // Показуємо нове фото з телефону
+                            : (isEditing && book.imageUrl != null)
+                            ? Image.network(book.imageUrl!, fit: BoxFit.cover) // Або старе з інтернету
+                            : const Icon(Icons.camera_alt, size: 50, color: Colors.grey),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    // --- КІНЕЦЬ БЛОКУ ФОТО ---
                     TextField(controller: titleController, decoration: const InputDecoration(labelText: 'Назва')),
                     TextField(controller: authorController, decoration: const InputDecoration(labelText: 'Автор')),
                     TextField(controller: yearController, decoration: const InputDecoration(labelText: 'Рік'), keyboardType: TextInputType.number),
@@ -734,3 +762,6 @@ class BooksTab extends StatelessWidget {
   }
 }
 */
+
+
+
